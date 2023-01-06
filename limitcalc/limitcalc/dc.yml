@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:13.1
+    hostname: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: limit
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      dev-network:
+        aliases:
+          - postgres
+
+volumes:
+  pg_data:
+    driver: local
+
+networks:
+  dev-network:
+    name: dev-network
