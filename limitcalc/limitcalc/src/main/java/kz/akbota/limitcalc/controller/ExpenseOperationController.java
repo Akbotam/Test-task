@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/expense")
 public class ExpenseOperationController {
+	private final ExpenseOperationService service;
 
   @PostMapping
-  public ResponseEntity<?> saveExpense(@Valid @RequestBody ExpenseOperation expenseOperation) {
-    return null;
+  public void saveExpense(@Valid @RequestBody ExpenseOperation expenseOperation) {
+	  service.saveExpenseOperation(expenseOperation);
   }
 
 }
+
